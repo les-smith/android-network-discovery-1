@@ -60,6 +60,8 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
     private HostsAdapter adapter;
     private Button btn_discover;
     private AbstractDiscovery mDiscoveryTask = null;
+    private String MAC;
+   
 
     // private SlidingDrawer mDrawer;
 
@@ -180,6 +182,9 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
             return;
         }
 
+        
+         MAC=prefs.getString(Prefs.MAC_ADDRESS, Prefs.DEFAULT_MAC_ADDRESS);
+         
         // Get ip information
         network_ip = NetInfo.getUnsignedLongFromIp(net.ip);
         if (prefs.getBoolean(Prefs.KEY_IP_CUSTOM, Prefs.DEFAULT_IP_CUSTOM)) {
@@ -416,8 +421,13 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
 
     public void addHost(HostBean host) {
         host.position = hosts.size();
+        String hw=host.hardwareAddress;
+        if (hw.startsWith(MAC))
+        {
         hosts.add(host);
         adapter.add(null);
+        }
+       
     }
 
     public static void scanSingle(final Context ctxt, String ip) {

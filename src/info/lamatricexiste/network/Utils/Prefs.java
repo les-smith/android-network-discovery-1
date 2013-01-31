@@ -52,6 +52,9 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
 
     public final static String KEY_PORT_START = "port_start";
     public final static String DEFAULT_PORT_START = "1";
+    
+    public final static String MAC_ADDRESS = "mac_address";
+    public final static String DEFAULT_MAC_ADDRESS  = "cc";
 
     public final static String KEY_PORT_END = "port_end";
     public final static String DEFAULT_PORT_END = "1024";

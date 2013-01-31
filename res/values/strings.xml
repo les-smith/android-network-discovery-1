@@ -140,7 +140,7 @@
     <string name="preferences_ip_start_summary">First IP address to scan</string>
     <string name="preferences_ip_end_title">IP end</string>
     <string name="preferences_ip_end_summary">Last IP address to scan</string>
-    <string name="preferences_ip_custom_title">Custom IP range</string>
+    <string name="preferences_ip_custom_title">Custom IP range</string><string name="preferences_mac_address_title">mac address</string><string name="preferences_mac_address_summary">mac address</string>
     <string name="preferences_ip_custom_summary">Manually set start/end IPs</string>
     <string name="preferences_cidr_custom_title">Custom CIDR</string>
     <string name="preferences_cidr_custom_summary">Manually set CIDR (defines subnet)</string>
