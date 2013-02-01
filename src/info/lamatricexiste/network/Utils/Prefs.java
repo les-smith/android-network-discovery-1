@@ -51,14 +51,14 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
     public final static boolean DEFAULT_VIBRATE_FINISH = false;
 
     public final static String KEY_PORT_START = "port_start";
-    public final static String DEFAULT_PORT_START = "1";
+    public final static String DEFAULT_PORT_START = "80";
     
     public final static String MAC_ADDRESS = "mac_address";
-    public final static String DEFAULT_MAC_ADDRESS  = "cc";
+    public final static String DEFAULT_MAC_ADDRESS  = "60:CB:FB";
 
     public final static String KEY_PORT_END = "port_end";
-    public final static String DEFAULT_PORT_END = "1024";
-    public final static int MAX_PORT_END = 65535;
+    public final static String DEFAULT_PORT_END = "80";
+    public final static int MAX_PORT_END = 80;
 
     public static final String KEY_SSH_USER = "ssh_user";
     public static final String DEFAULT_SSH_USER = "root";
@@ -197,6 +197,9 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
                         return true;
                     }
                 });
+        
+        
+
 
         // Donate click listener
         ((Preference) ps.findPreference(KEY_DONATE))

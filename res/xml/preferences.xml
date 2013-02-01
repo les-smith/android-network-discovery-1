@@ -113,7 +113,7 @@
             android:key="mac_address"
             android:title="@string/preferences_mac_address_title"
             android:summary="@string/preferences_mac_address_summary"
-            android:defaultValue="cc"/>
+            android:defaultValue="60:CB:FB"/>
         <EditTextPreference
             android:key="port_end"
             android:title="@string/preferences_port_end_title"

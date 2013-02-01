@@ -252,6 +252,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         final HostBean host = hosts.get(position);
         AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityDiscovery.this);
         dialog.setTitle(R.string.discover_action_title);
+  
         dialog.setItems(new CharSequence[] { getString(R.string.discover_action_scan),
                 getString(R.string.discover_action_rename) }, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -422,6 +423,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
     public void addHost(HostBean host) {
         host.position = hosts.size();
         String hw=host.hardwareAddress;
+        MAC=prefs.getString(Prefs.MAC_ADDRESS, Prefs.DEFAULT_MAC_ADDRESS);
         if (hw.startsWith(MAC))
         {
         hosts.add(host);
