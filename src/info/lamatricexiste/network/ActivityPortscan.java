@@ -11,6 +11,8 @@ import info.lamatricexiste.network.Utils.Db;
 import info.lamatricexiste.network.Utils.Help;
 import info.lamatricexiste.network.Utils.Prefs;
 
+
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +51,10 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 final public class ActivityPortscan extends TabActivity {
 
@@ -80,7 +86,6 @@ final public class ActivityPortscan extends TabActivity {
         ctxt = getApplicationContext();
         prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);
         mInflater = LayoutInflater.from(ctxt);
-
         // Get Intent information
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -207,16 +212,7 @@ final public class ActivityPortscan extends TabActivity {
         super.onStop();
     }
 
-    // TODO: Handle orientation change without canceling the scan
-    // @Override
-    // public void onConfigurationChanged(Configuration newConfig) {
-    // super.onConfigurationChanged(newConfig);
-    // if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-    // setContentView(R.layout.portscan_portrait);
-    // } else {
-    // setContentView(R.layout.portscan);
-    // }
-    // }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -326,26 +322,18 @@ final public class ActivityPortscan extends TabActivity {
         String pk = "";
         String search = null;
         Intent intent = null;
-        // if (service.equals("ftp") || service.equals("ftps") ||
-        // service.equals("sftp")) {
-        // pk = "AndFTP";
-        // search = "market://search?q=andftp";
-        // intent = new Intent(Intent.ACTION_PICK);
-        // // intent.setData(service.equals("ftp") ? Uri.parse("ftp://" +
-        // // host.ipAddress) : Uri
-        // // .parse("sftp://" + host.ipAddress));
-        // intent.setDataAndType(service.equals("ftp") ? Uri.parse("ftp://" +
-        // host.ipAddress)
-        // : Uri.parse("sftp://" + host.ipAddress),
-        // "vnd.android.cursor.dir/lysesoft.andftp.uri");
-        // intent.putExtra("ftp_pasv", "true");
-        // // intent.putExtra("ftp_username", "anonymous");
-        // // intent.putExtra("ftp_password", "anonymous");
-        // // intent.putExtra("ftp_keyfile", "/sdcard/dsakey.txt");
-        // // intent.putExtra("ftp_keypass", "");
-        // // intent.putExtra("ftp_resume", "true");
-        // // intent.putExtra("ftp_encoding", "UTF8");
-        // } else
+       /*
+        web_view wv = new web_view();
+        
+        WebView myWebView = (WebView) findViewById(R.id.webview);
+        WebSettings webSettings = myWebView.getSettings();
+        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebChromeClient(new WebChromeClient()); 
+        webSettings.setJavaScriptEnabled(true);
+        myWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        myWebView.getSettings().setSupportMultipleWindows(true);
+        */
+   
         if (service.equals("ssh")) {
             pk = "ConnectBot (ssh)";
             search = "market://search?q=pname:org.connectbot";
@@ -359,16 +347,24 @@ final public class ActivityPortscan extends TabActivity {
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("telnet://" + host.ipAddress + ":" + port));
         } else if (service.equals("http") || service.equals("https")) {
+       
             intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(service + "://"
-                    + (host.hostname != null ? host.hostname : host.ipAddress) + ":" + port));
+          
+          
+           intent.setData(Uri.parse(service + "://"
+                  + (host.hostname != null ? host.hostname : host.ipAddress) + ":" + port));
+         
         } else {
             makeToast(R.string.scan_noaction);
         }
 
         if (intent != null) {
             try {
+            	//wv.load_url(service + "://"  + (host.hostname != null ? host.hostname : host.ipAddress) + ":" + port);
                 startActivity(intent);
+                //myWebView.loadUrl(service + "://"  + (host.hostname != null ? host.hostname : host.ipAddress) + ":" + port);
+              
+                
             } catch (ActivityNotFoundException e) {
                 if (search != null) {
                     makeToast(getString(R.string.package_missing, pk));

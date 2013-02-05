@@ -54,7 +54,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
     public final static String DEFAULT_PORT_START = "80";
     
     public final static String MAC_ADDRESS = "mac_address";
-    public final static String DEFAULT_MAC_ADDRESS  = "60:CB:FB";
+    public final static String DEFAULT_MAC_ADDRESS  = "60:cb:fb";
 
     public final static String KEY_PORT_END = "port_end";
     public final static String DEFAULT_PORT_END = "80";
@@ -148,7 +148,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
         Preference resetdb = (Preference) ps.findPreference(KEY_RESET_NICDB);
         resetdb.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
-                new UpdateNicDb(Prefs.this);
+                //new UpdateNicDb(Prefs.this);
                 return false;
             }
         });

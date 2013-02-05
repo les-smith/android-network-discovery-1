@@ -48,6 +48,7 @@ final public class ActivityMain extends Activity {
         edit.putString(Prefs.KEY_INTF, Prefs.DEFAULT_INTF);
 
         phase2(ctxt);
+        //phase3(d);
     }
 
     private void phase2(final Context ctxt) {

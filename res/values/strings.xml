@@ -4,7 +4,7 @@
  Licensed under GNU's GPL 2, see README
 -->
 <resources>
-    <string name="app_name">Network Discovery</string>
+    <string name="app_name">Airscape WHF</string>
     <string name="app_loading">Loading</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
@@ -24,6 +24,8 @@
     <string name="task_services">Creating Services database ...\nThis may take a while ...</string>
  
     <string name="package_missing">%s must be installed from the market !</string>
+    
+    <string name="webview">webview</string>
     
     <string name="wifi_enabled">Wifi is enabled</string>
     <string name="wifi_enabling">Wifi is enabling</string>
@@ -155,5 +157,6 @@
         <item>Ping/connect (default)</item>
         <item>DNS requests</item>
     </string-array>
+        <string name="a">a</string>
     
 </resources>

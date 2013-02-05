@@ -97,25 +97,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         list.setOnItemClickListener(this);
         list.setEmptyView(findViewById(R.id.list_empty));
 
-        // Drawer
-        /*
-         * final View info = findViewById(R.id.info_container); mDrawer =
-         * (SlidingDrawer) findViewById(R.id.drawer);
-         * mDrawer.setOnDrawerScrollListener(new
-         * SlidingDrawer.OnDrawerScrollListener() { public void
-         * onScrollStarted() {
-         * info.setBackgroundResource(R.drawable.drawer_bg2); }
-         * 
-         * public void onScrollEnded() { } });
-         * mDrawer.setOnDrawerCloseListener(new
-         * SlidingDrawer.OnDrawerCloseListener() { public void onDrawerClosed()
-         * { info.setBackgroundResource(R.drawable.drawer_bg); } }); EditText
-         * cidr_value = (EditText) findViewById(R.id.cidr_value); ((Button)
-         * findViewById(R.id.btn_cidr_plus)).setOnClickListener(new
-         * View.OnClickListener() { public void onClick(View v) { } });
-         * ((Button) findViewById(R.id.btn_cidr_minus)).setOnClickListener(new
-         * View.OnClickListener() { public void onClick(View v) { } });
-         */
+       
     }
 
     @Override
@@ -251,10 +233,13 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final HostBean host = hosts.get(position);
         AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityDiscovery.this);
+        
+             
         dialog.setTitle(R.string.discover_action_title);
   
-        dialog.setItems(new CharSequence[] { getString(R.string.discover_action_scan),
-                getString(R.string.discover_action_rename) }, new OnClickListener() {
+        dialog.setItems(new CharSequence[] { getString(R.string.discover_action_scan) //,
+               // getString(R.string.discover_action_rename) 
+                }, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
@@ -424,7 +409,12 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         host.position = hosts.size();
         String hw=host.hardwareAddress;
         MAC=prefs.getString(Prefs.MAC_ADDRESS, Prefs.DEFAULT_MAC_ADDRESS);
-        if (hw.startsWith(MAC))
+        
+        if (hw.startsWith(MAC.toLowerCase())) {
+        	host.nicVendor ="AirScape";
+        }
+        
+        if (hw.startsWith(MAC.toLowerCase())|| MAC ==null)
         {
         hosts.add(host);
         adapter.add(null);
@@ -503,34 +493,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         getFileName.show();
     }
 
-    // private List<String> getSelectedHosts(){
-    // List<String> hosts_s = new ArrayList<String>();
-    // int listCount = list.getChildCount();
-    // for(int i=0; i<listCount; i++){
-    // CheckBox cb = (CheckBox) list.getChildAt(i).findViewById(R.id.list);
-    // if(cb.isChecked()){
-    // hosts_s.add(hosts.get(i));
-    // }
-    // }
-    // return hosts_s;
-    // }
-    //    
-    // private void setSelectedHosts(Boolean all){
-    // int listCount = list.getChildCount();
-    // for(int i=0; i<listCount; i++){
-    // CheckBox cb = (CheckBox) list.getChildAt(i).findViewById(R.id.list);
-    // if(all){
-    // cb.setChecked(true);
-    // } else {
-    // cb.setChecked(false);
-    // }
-    // }
-    // }
 
-    // private void makeToast(String msg) {
-    // Toast.makeText(getApplicationContext(), (CharSequence) msg,
-    // Toast.LENGTH_SHORT).show();
-    // }
 
     public void makeToast(int msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();

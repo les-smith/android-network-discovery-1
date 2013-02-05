@@ -211,25 +211,7 @@ public class NetInfo {
         return getIpFromLongUnsigned((long) start);
     }
 
-    /*
-     * public String getIp() { return getIpFromIntSigned(dhcp.ipAddress); }
-     * public int getNetCidr() { int i = dhcp.netmask; i = i - ((i >> 1) &
-     * 0x55555555); i = (i & 0x33333333) + ((i >> 2) & 0x33333333); return ((i +
-     * (i >> 4) & 0xF0F0F0F) * 0x1010101) >> 24; // return 24; } public String
-     * getNetIp() { return getIpFromIntSigned(dhcp.ipAddress & dhcp.netmask); }
-     */
-    // public String getNetmask() {
-    // return getIpFromIntSigned(dhcp.netmask);
-    // }
-
-    // public String getBroadcastIp() {
-    // return getIpFromIntSigned((dhcp.ipAddress & dhcp.netmask) |
-    // ~dhcp.netmask);
-    // }
-
-    // public Object getGatewayIp() {
-    // return getIpFromIntSigned(dhcp.gateway);
-    // }
+   
 
     public SupplicantState getSupplicantState() {
         return info.getSupplicantState();
@@ -275,18 +257,5 @@ public class NetInfo {
         return 32 - (int) (Math.log(sum) / Math.log(2d));
     }
 
-    // public int getIntFromInet(InetAddress ip_addr) {
-    // return getIntFromIp(ip_addr.getHostAddress());
-    // }
-
-    // private InetAddress getInetFromInt(int ip_int) {
-    // byte[] quads = new byte[4];
-    // for (int k = 0; k < 4; k++)
-    // quads[k] = (byte) ((ip_int >> k * 8) & 0xFF); // 0xFF=255
-    // try {
-    // return InetAddress.getByAddress(quads);
-    // } catch (java.net.UnknownHostException e) {
-    // return null;
-    // }
-    // }
+    
 }
