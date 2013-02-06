@@ -19,11 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -232,65 +234,24 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
 
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
         final HostBean host = hosts.get(position);
-        AlertDialog.Builder dialog = new AlertDialog.Builder(ActivityDiscovery.this);
         
-             
-        dialog.setTitle(R.string.discover_action_title);
-  
-        dialog.setItems(new CharSequence[] { getString(R.string.discover_action_scan) //,
-               // getString(R.string.discover_action_rename) 
-                }, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        // Start portscan
-                        Intent intent = new Intent(ctxt, ActivityPortscan.class);
-                        intent.putExtra(EXTRA_WIFI, NetInfo.isConnected(ctxt));
-                        intent.putExtra(HostBean.EXTRA, host);
-                        startActivityForResult(intent, SCAN_PORT_RESULT);
-                        break;
-                    case 1:
-                        // Change name
-                        // FIXME: TODO
-
-                        final View v = mInflater.inflate(R.layout.dialog_edittext, null);
-                        final EditText txt = (EditText) v.findViewById(R.id.edittext);
-                        final Save s = new Save();
-                        txt.setText(s.getCustomName(host));
-
-                        final AlertDialog.Builder rename = new AlertDialog.Builder(
-                                ActivityDiscovery.this);
-                        rename.setView(v);
-                        rename.setTitle(R.string.discover_action_rename);
-                        rename.setPositiveButton(R.string.btn_ok, new OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                final String name = txt.getText().toString();
-                                host.hostname = name;
-                                s.setCustomName(name, host.hardwareAddress);
-                                adapter.notifyDataSetChanged();
-                                Toast.makeText(ActivityDiscovery.this,
-                                        R.string.discover_action_saved, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        rename.setNegativeButton(R.string.btn_remove, new OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                host.hostname = null;
-                                s.removeCustomName(host.hardwareAddress);
-                                adapter.notifyDataSetChanged();
-                                Toast.makeText(ActivityDiscovery.this,
-                                        R.string.discover_action_deleted, Toast.LENGTH_SHORT)
-                                        .show();
-                            }
-                        });
-                        rename.show();
-                        break;
-                }
-            }
-        });
-        dialog.setNegativeButton(R.string.btn_discover_cancel, null);
-        dialog.show();
+      try {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        Uri url = Uri.parse("http://"+host.hostname);
+        i.setData(url);
+        startActivity(i);
+      }
+        catch (ActivityNotFoundException e)  {
+            Log.e(TAG, "URL not found !");
+        }
     }
+   
+    
+        
+        
 
+    
+  
     static class ViewHolder {
         TextView host;
         TextView mac;
@@ -302,7 +263,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
     private class HostsAdapter extends ArrayAdapter<Void> {
         public HostsAdapter(Context ctxt) {
             super(ctxt, R.layout.list_host, R.id.list);
-        }
+        } 
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -347,7 +308,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
             return convertView;
         }
     }
-
+ 
     /**
      * Discover hosts
      */

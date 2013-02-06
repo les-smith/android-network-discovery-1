@@ -322,31 +322,8 @@ final public class ActivityPortscan extends TabActivity {
         String pk = "";
         String search = null;
         Intent intent = null;
-       /*
-        web_view wv = new web_view();
-        
-        WebView myWebView = (WebView) findViewById(R.id.webview);
-        WebSettings webSettings = myWebView.getSettings();
-        myWebView.setWebViewClient(new WebViewClient());
-        myWebView.setWebChromeClient(new WebChromeClient()); 
-        webSettings.setJavaScriptEnabled(true);
-        myWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        myWebView.getSettings().setSupportMultipleWindows(true);
-        */
-   
-        if (service.equals("ssh")) {
-            pk = "ConnectBot (ssh)";
-            search = "market://search?q=pname:org.connectbot";
-            String user = prefs.getString(Prefs.KEY_SSH_USER, Prefs.DEFAULT_SSH_USER);
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("ssh://" + user + "@" + host.ipAddress + ":" + port + "/#"
-                    + user + "@" + host.ipAddress + ":" + port));
-        } else if (service.equals("telnet")) {
-            pk = "ConnectBot (telnet)";
-            search = "market://search?q=pname:org.connectbot";
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("telnet://" + host.ipAddress + ":" + port));
-        } else if (service.equals("http") || service.equals("https")) {
+       
+        	if (service.equals("http") || service.equals("https")) {
        
             intent = new Intent(Intent.ACTION_VIEW);
           
@@ -640,15 +617,7 @@ final public class ActivityPortscan extends TabActivity {
         return null;
     }
 
-    // private boolean isPackageInstalled(Context context, String p) {
-    // PackageManager packageManager = context.getPackageManager();
-    // try {
-    // packageManager.getPackageInfo(p, 0);
-    // } catch (NameNotFoundException e) {
-    // return false;
-    // }
-    // return true;
-    // }
+  
 
     private void makeToast(String msg) {
         Toast.makeText(getApplicationContext(), (CharSequence) msg, Toast.LENGTH_SHORT).show();

@@ -120,9 +120,9 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
     public static final String KEY_VERSION = "version";
     public static final String KEY_WIFI = "wifi";
 
-    private static final String URL_DONATE = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=MDSDWG83PJSNG&lc=CH&item_name=Network%20Discovery%20for%20Android&currency_code=CHF&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted";
-    private static final String URL_WEB = "http://rorist.github.com/android-network-discovery/";
-    private static final String URL_EMAIL = "aubort.jeanbaptiste@gmail.com";
+    private static final String URL_DONATE = "";
+    private static final String URL_WEB = "http://airscape.com";
+    private static final String URL_EMAIL = "info@airscape.com";
 
     private Context ctxt;
     private PreferenceScreen ps = null;
@@ -202,6 +202,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
 
 
         // Donate click listener
+        /*
         ((Preference) ps.findPreference(KEY_DONATE))
                 .setOnPreferenceClickListener(new OnPreferenceClickListener() {
                     public boolean onPreferenceClick(Preference preference) {
@@ -211,6 +212,8 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
                         return true;
                     }
                 });
+                
+  */
 
         // Website
         Preference website = (Preference) ps.findPreference(KEY_WEBSITE);
