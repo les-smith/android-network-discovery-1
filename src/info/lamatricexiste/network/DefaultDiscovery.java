@@ -33,7 +33,8 @@ public class DefaultDiscovery extends AbstractDiscovery {
     private final static int[] DPORTS = { 139, 445, 22, 80 };
     private final static int TIMEOUT_SCAN = 25; // seconds
     private final static int TIMEOUT_SHUTDOWN = 10; // seconds
-    private final static int THREADS = 10; //FIXME: Test, plz set in options again ?
+   // private final static int THREADS = 10; //FIXME: Test, plz set in options again ?
+    private final static int THREADS = 127; //FIXME: Test, plz set in options again ?
     private final int mRateMult = 5; // Number of alive hosts between Rate
     private int pt_move = 2; // 1=backward 2=forward
     private ExecutorService mPool;
@@ -221,13 +222,7 @@ public class DefaultDiscovery extends AbstractDiscovery {
                     }
                 }
 
-                /*
-                if ((port = Reachable.isReachable(h, getRate())) > -1) {
-                    Log.v(TAG, "used Network.Reachable object, "+addr+" port=" + port);
-                    publish(host);
-                    return;
-                }
-                */
+             
                 // Arp Check #3
                 host.hardwareAddress = HardwareAddress.getHardwareAddress(addr);
                 if(!NetInfo.NOMAC.equals(host.hardwareAddress)){
@@ -279,12 +274,7 @@ public class DefaultDiscovery extends AbstractDiscovery {
                             Log.e(TAG, e.getMessage());
                         }
                     }
-                    // TODO: NETBIOS
-                    //try {
-                    //    host.hostname = NbtAddress.getByName(addr).getHostName();
-                    //} catch (UnknownHostException e) {
-                    //    Log.i(TAG, e.getMessage());
-                    //}
+                   
                 }
             }
         }

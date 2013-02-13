@@ -63,8 +63,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
     public static final String KEY_SSH_USER = "ssh_user";
     public static final String DEFAULT_SSH_USER = "root";
 
-    //public static final String KEY_NTHREADS = "nthreads";
-    //public static final String DEFAULT_NTHREADS = "8";
+
 
     public static final String KEY_RESET_NICDB = "resetdb";
     public static final int DEFAULT_RESET_NICDB = 1;
@@ -75,8 +74,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
     public static final String KEY_METHOD_DISCOVER = "discovery_method";
     public static final String DEFAULT_METHOD_DISCOVER = "0";
 
-    // public static final String KEY_METHOD_PORTSCAN = "method_portscan";
-    // public static final String DEFAULT_METHOD_PORTSCAN = "0";
+
 
     public final static String KEY_TIMEOUT_FORCE = "timeout_force";
     public final static boolean DEFAULT_TIMEOUT_FORCE = false;
@@ -120,7 +118,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
     public static final String KEY_VERSION = "version";
     public static final String KEY_WIFI = "wifi";
 
-    private static final String URL_DONATE = "";
+ 
     private static final String URL_WEB = "http://airscape.com";
     private static final String URL_EMAIL = "info@airscape.com";
 
@@ -201,19 +199,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
         
 
 
-        // Donate click listener
-        /*
-        ((Preference) ps.findPreference(KEY_DONATE))
-                .setOnPreferenceClickListener(new OnPreferenceClickListener() {
-                    public boolean onPreferenceClick(Preference preference) {
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(URL_DONATE));
-                        startActivity(i);
-                        return true;
-                    }
-                });
-                
-  */
+
 
         // Website
         Preference website = (Preference) ps.findPreference(KEY_WEBSITE);
@@ -312,7 +298,7 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
             if (ipStart > ipEnd) {
                 ipStartEdit.setText(before_ip_start);
                 ipEndEdit.setText(before_ip_end);
-                Toast.makeText(ctxt, R.string.preferences_error1, Toast.LENGTH_LONG).show();
+                 Toast.makeText(ctxt, R.string.preferences_error1, Toast.LENGTH_LONG).show();
             }
         } catch (NumberFormatException e) {
             ipStartEdit.setText(before_ip_start);
@@ -340,19 +326,5 @@ public class Prefs extends PreferenceActivity implements OnSharedPreferenceChang
         }
     }
 
-    //private void checkMaxThreads() {
-    //    // Check if nthreads is numeric and between 1-256
-    //    EditTextPreference threads = (EditTextPreference) ps.findPreference(KEY_NTHREADS);
-    //    int nthreads = 0;
-    //    try {
-    //        nthreads = Integer.parseInt(threads.getText());
-    //    } catch (NumberFormatException e) {
-    //        threads.setText(DEFAULT_NTHREADS);
-    //        Toast.makeText(ctxt, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-    //    }
-    //    if (nthreads < 1 || nthreads > 256) {
-    //        threads.setText(DEFAULT_NTHREADS);
-    //        Toast.makeText(ctxt, R.string.preferences_error2, Toast.LENGTH_LONG).show();
-    //    }
-    //}
+   
 }

@@ -74,6 +74,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.discovery);
         mInflater = LayoutInflater.from(ctxt);
+ 
 
         // Discover
         btn_discover = (Button) findViewById(R.id.btn_discover);
@@ -98,7 +99,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         list.setItemsCanFocus(false);
         list.setOnItemClickListener(this);
         list.setEmptyView(findViewById(R.id.list_empty));
-
+      
        
     }
 
@@ -124,7 +125,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case ActivityDiscovery.MENU_SCAN_SINGLE:
-                scanSingle(this, null);
+                //scanSingle(this, null);
                 return true;
             case ActivityDiscovery.MENU_OPTIONS:
                 startActivity(new Intent(ctxt, Prefs.class));
@@ -313,24 +314,8 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
      * Discover hosts
      */
     private void startDiscovering() {
-        int method = 0;
-        try {
-            method = Integer.parseInt(prefs.getString(Prefs.KEY_METHOD_DISCOVER,
-                    Prefs.DEFAULT_METHOD_DISCOVER));
-        } catch (NumberFormatException e) {
-            Log.e(TAG, e.getMessage());
-        }
-        switch (method) {
-            case 1:
-                mDiscoveryTask = new DnsDiscovery(ActivityDiscovery.this);
-                break;
-            case 2:
-                // Root
-                break;
-            case 0:
-            default:
-                mDiscoveryTask = new DefaultDiscovery(ActivityDiscovery.this);
-        }
+     
+        mDiscoveryTask = new DefaultDiscovery(ActivityDiscovery.this);
         mDiscoveryTask.setNetwork(network_ip, network_start, network_end);
         mDiscoveryTask.execute();
         btn_discover.setText(R.string.btn_discover_cancel);
@@ -382,7 +367,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         }
        
     }
-
+/*
     public static void scanSingle(final Context ctxt, String ip) {
         // Alert dialog
         View v = LayoutInflater.from(ctxt).inflate(R.layout.scan_single, null);
@@ -410,7 +395,7 @@ final public class ActivityDiscovery extends ActivityNet implements OnItemClickL
         dialogIp.setNegativeButton(R.string.btn_discover_cancel, null);
         dialogIp.show();
     }
-
+*/
     private void export() {
         final Export e = new Export(ctxt, hosts);
         final String file = e.getFileName();

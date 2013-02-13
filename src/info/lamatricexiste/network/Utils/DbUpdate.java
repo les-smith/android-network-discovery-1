@@ -66,7 +66,7 @@ public class DbUpdate extends AsyncTask<Void, String, Void> {
                         cancel(true);
                     }
                 });
-                dialog.show();
+                //dialog.show();
             }
         }
     }
@@ -78,6 +78,7 @@ public class DbUpdate extends AsyncTask<Void, String, Void> {
             if (d != null) {
                 d.setProgressBarIndeterminateVisibility(true);
                 progress = ProgressDialog.show(d, "", d.getString(R.string.task_db, file));
+                progress.hide();
             }
         }
     }

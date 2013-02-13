@@ -13,6 +13,7 @@ import info.lamatricexiste.network.Utils.Prefs;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -34,7 +35,8 @@ final public class ActivityMain extends Activity {
     public static final String PKG = "info.lamatricexiste.network";
     public static SharedPreferences prefs = null;
 
-    @Override
+    @SuppressLint("CommitPrefEdits")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -48,7 +50,7 @@ final public class ActivityMain extends Activity {
         edit.putString(Prefs.KEY_INTF, Prefs.DEFAULT_INTF);
 
         phase2(ctxt);
-        //phase3(d);
+      
     }
 
     private void phase2(final Context ctxt) {
@@ -88,7 +90,11 @@ final public class ActivityMain extends Activity {
                 new DbUpdateProbes();
             }
         }
-
+        
+        new DbUpdateNic();
+        phase3(ctxt);
+        
+        
         // CheckNicDb
         try {
             if (prefs.getInt(Prefs.KEY_RESET_NICDB, Prefs.DEFAULT_RESET_NICDB) != getPackageManager()
@@ -106,7 +112,9 @@ final public class ActivityMain extends Activity {
             edit.commit();
             phase3(ctxt);
         }
+
     }
+ 
 
     private void phase3(final Context ctxt) {
         // Install Services DB
@@ -142,6 +150,7 @@ final public class ActivityMain extends Activity {
             if (d != null) {
                 try {
                     d.setProgressBarIndeterminateVisibility(true);
+                    d.setProgressBarVisibility(false);
                     progress = ProgressDialog.show(d, "", d.getString(R.string.task_services));
                 } catch (Exception e) {
                     if (e != null) {
