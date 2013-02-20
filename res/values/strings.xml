@@ -45,9 +45,9 @@ Licensed under GNU's GPL 2, see README
     <string name="net_mode_eth">Ethernet (Not supported yet)</string>
     <string name="net_mode_unknown">Unknown</string>
     
-    <string name="discover_start">Discovery started ...</string>
-    <string name="discover_finished">Discovery finished !</string>
-    <string name="discover_canceled">Discovery canceled !</string>
+    <string name="discover_start">AirScape Discovery started ...</string>
+    <string name="discover_finished">AirScape Discovery finished !</string>
+    <string name="discover_canceled">AirScape  Discovery canceled !</string>
     <string name="discover_proxy_title">Proxy Error</string>
     <string name="discover_proxy_msg">Discovery is canceled, because a mac address appeared multiple times, you probably are behind a proxy.\n\nGo to your Gateway from the browser : http://%s</string>
     <string name="discover_root_title">Installation: Root</string>

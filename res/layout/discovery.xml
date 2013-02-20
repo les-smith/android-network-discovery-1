@@ -26,6 +26,7 @@
             android:id="@+id/btn_options"
             android:drawableLeft="@drawable/settings"
             android:text="@string/btn_options"
+            android:visibility="gone"
             style="@style/ButtonTop" />
     </LinearLayout>
     <FrameLayout

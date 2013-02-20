@@ -7,7 +7,7 @@
 
 import sqlite3, os, urllib
 
-db = '/var/www/lamatricexiste.info/htdocs/oui.db'
+db = '/var/www/airscape.info/htdocs/oui.db'
 url = 'http://standards.ieee.org/regauth/oui/oui.txt'
 
 #Download the file
